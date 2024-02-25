@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITNESS WEBSITE LOGIN</title>
+    <style>
+        body {
+            font-family: 'Your Custom Font', sans-serif;
+            background-image: url("https://wallpapercave.com/wp/wp2631591.jpg");
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: rgba(175, 171, 171, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            color: #333;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        .login-container button {
+            background-color: #4caf50;
+            color: #e7d1d1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-container button:hover {
+            background-color: #8b968b;
+        }
+
+        .signup-link {
+            margin-top: 10px;
+        }
+
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>LOGIN TO YOUR FITNESS WEBSITE</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="button" onclick="performLogin()">Login</button>
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        function performLogin() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Array of valid credentials
+            var validCredentials = [
+                { email: 'hariss@gmail.com', password: '1234' },
+                { email: 'dhanush@gmail.com', password: '1234' },
+                // Add more sets of credentials as needed
+            ];
+
+            // Check if the entered email and password match any of the valid credentials
+            var isValid = validCredentials.some(function (credential) {
+                return credential.email === email && credential.password === password;
+            });
+
+            if (isValid) {
+                // Create an object to hold the credentials
+                var credentials = {
+                    email: email,
+                    password: password
+                };
+
+                // Convert the object to a JSON string
+                var credentialsJSON = JSON.stringify(credentials);
+
+                // Save the JSON string to local storage
+                localStorage.setItem('userCredentials', credentialsJSON);
+
+                // Redirect or perform other actions as needed
+                // For example, redirect to a dashboard page
+                window.location.href = 'index.html';
+            } else {
+                alert('Invalid email or password');
+            }
+        }
+    </script>
+</body>
+</html>
